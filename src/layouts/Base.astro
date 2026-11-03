@@ -57,13 +57,31 @@ const { title = "Mona's Bookmark Manager App" } = Astro.props;
         --font-head: 'Monaspace Xenon', 'Monaspace Neon', ui-monospace, monospace;
       }
       * { box-sizing: border-box; }
+      [hidden] { display: none !important; }
       body {
         font-family: var(--font-body);
         line-height: 1.5;
         max-width: 40rem;
         margin: 0 auto;
         padding: 2.5rem 1.25rem 4rem;
+        min-height: 100vh;
+        background:
+          radial-gradient(40rem 20rem at 85% -5%, color-mix(in srgb, var(--accent) 22%, transparent), transparent 70%),
+          radial-gradient(30rem 18rem at -10% 10%, color-mix(in srgb, #a855f7 16%, transparent), transparent 70%);
+        background-repeat: no-repeat;
       }
+      a { color: inherit; text-decoration-color: color-mix(in srgb, var(--accent) 60%, transparent); text-underline-offset: 0.2em; }
+      a:hover { color: var(--accent); }
+      main {
+        padding: 1.25rem;
+        border: 1px solid var(--border);
+        border-radius: calc(var(--radius) * 1.5);
+        background: color-mix(in srgb, Canvas 78%, transparent);
+        box-shadow: 0 12px 40px -18px #0006;
+      }
+      .error { margin: 0 0 1rem; padding: 0.5rem 0.75rem; font-size: 0.85rem; color: #b91c1c; background: #ef44441a; border: 1px solid #ef444455; border-radius: var(--radius); }
+      @media (prefers-color-scheme: dark) { .error { color: #fca5a5; } }
+      .bookmark .sep { color: var(--muted); white-space: pre; }
       header { margin-bottom: 1.5rem; }
       h1 { margin: 0 0 0.25rem; font-size: 1.75rem; font-family: var(--font-head); letter-spacing: -0.01em; }
       .tagline { margin: 0; color: var(--muted); }
@@ -128,14 +146,16 @@ const { title = "Mona's Bookmark Manager App" } = Astro.props;
         border: 1px solid var(--border);
         border-radius: var(--radius);
       }
-      .bookmark .url { flex: 1 1 12rem; overflow-wrap: anywhere; }
+      .bookmark .url { flex: 0 1 auto; min-width: 0; overflow-wrap: anywhere; }
       .bookmark .slug {
-        font-family: ui-monospace, "SF Mono", monospace;
+        font-family: var(--font-body);
+        font-weight: 600;
         font-size: 0.85rem;
         padding: 0.15rem 0.5rem;
         border-radius: 999px;
         background: color-mix(in srgb, var(--accent) 18%, transparent);
       }
+      .bookmark .copy { margin-left: auto; }
       .bookmark .copy {
         background: transparent;
         color: inherit;
